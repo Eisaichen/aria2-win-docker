@@ -10,6 +10,8 @@ Copy-Item -Path .\entry.ps1 -Destination .\build\aria2
 
 .\wget --no-hsts -q "https://github.com/mayswind/AriaNg/releases/download/1.3.10/AriaNg-1.3.10.zip" -O .\AriaNg-1.3.10.zip
 Expand-Archive -Path .\AriaNg-1.3.10.zip -DestinationPath .\build\AriaNg
+$a = (Get-Content -Path .\build\AriaNg\js\aria-ng-ff0f4540ce.min.js) -replace ',rpcHost:"",rpcPort:"6800",rpcInterface:"jsonrpc",protocol:"http",httpMethod:"POST",rpcRequestHeaders:"",secret:"",',',rpcHost:"",rpcPort:"6800",rpcInterface:"jsonrpc",protocol:"ws",rpcRequestHeaders:"",secret:"",'
+Set-Content -Path .\build\AriaNg\js\aria-ng-ff0f4540ce.min.js -Value $a
 
 
 # Build
